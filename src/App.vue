@@ -4,7 +4,7 @@ import { watchEffect } from "vue";
 import HelloWorld from "./components/HelloWorld.vue";
 
 const initializeLIFF = async () => {
-  const liffId = "2002312146-moEARlAY"; // Adding LIFF ID HERE
+  const liffId = ""; // Adding LIFF ID HERE
 
   try {
     await liff.init({ liffId: liffId }); // try comment this line #2
