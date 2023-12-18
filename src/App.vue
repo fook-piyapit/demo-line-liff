@@ -1,5 +1,31 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import liff from "@line/liff";
+import { watchEffect } from "vue";
+import HelloWorld from "./components/HelloWorld.vue";
+
+const initializeLIFF = async () => {
+  const liffId = "2002312146-moEARlAY"; // Adding LIFF ID HERE
+
+  try {
+    await liff.init({ liffId: liffId }); // try comment this line #2
+    // You will see error NEED TO CALL LIFF INIT
+
+    // also try comment this if #3
+    if (!liff.isLoggedIn()) {
+      return liff.login({ redirectUri: window.location.href });
+    }
+    // You will see error NEED  LIFF ID NOT FOUND (because liff is not initialize)
+
+    console.log(await liff.getProfile()) // LOG LINE USER DATA
+
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+watchEffect(async () => {
+  // await initializeLIFF(); // try comment this line #1
+});
 </script>
 
 <template>
